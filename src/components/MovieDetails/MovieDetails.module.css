@@ -1,0 +1,26 @@
+.movieDetailsContainer {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .tabs {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #007bff;
+    margin-right: 20px;
+  }
+  
+  .loading {
+    text-align: center;
+    margin-top: 20px;
+  }
+  

@@ -1,17 +1,30 @@
 .homeContainer {
-    padding: 20px;
-  }
-  
-  .movieList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  
-  .movieItem {
-    width: 200px;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: center;
-  }
+  padding: 20px;
+  text-align: center;
+}
+
+.movieList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+}
+
+.movieItem {
+  width: 100%;
+  border: none; 
+  text-align: center;
+  font-size: 16px;
+  transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.movieItem.active {
+  border: 2px solid #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.7);
+}
+
+.movieItem:hover {
+  transform: scale(1.05);
+}

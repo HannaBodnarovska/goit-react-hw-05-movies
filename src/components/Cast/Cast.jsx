@@ -8,24 +8,24 @@ function Cast({ movieId }) {
 
   useEffect(() => {
     const API_KEY = '18ff5e266d356991087394c727a30345';
-    axios.get(`/movies/get-movie-credits/${movieId}?api_key=${API_KEY}`)
+    axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`)
       .then(response => {
         setCast(response.data.cast);
         setLoading(false);
       })
       .catch(error => {
-        console.error('Помилка отримання даних про акторський склад:', error);
+        console.error('Error fetching cast data:', error);
         setLoading(false);
       });
   }, [movieId]);
 
   if (loading) {
-    return <div className={styles.loading}>Завантаження акторського складу...</div>;
+    return <div className={styles.loading}>Loading cast...</div>;
   }
 
   return (
     <div className={styles.castContainer}>
-      <h2>Акторський склад</h2>
+      <h2>Cast</h2>
       {cast.length > 0 ? (
         <ul className={styles.castList}>
           {cast.map(actor => (
@@ -36,12 +36,12 @@ function Cast({ movieId }) {
                 className={styles.actorImage}
               />
               <h3>{actor.name}</h3>
-              <p>Роль: {actor.character}</p>
+              <p>Role: {actor.character}</p>
             </li>
           ))}
         </ul>
       ) : (
-        <p>Акторський склад відсутній.</p>
+        <p>Cast is not available.</p>
       )}
     </div>
   );

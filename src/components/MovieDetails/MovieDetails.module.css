@@ -1,26 +1,58 @@
 .movieDetailsContainer {
-    padding: 20px;
-  }
-  
-  h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .tabs {
-    display: flex;
-    margin-top: 20px;
-  }
-  
-  .tab {
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #007bff;
-    margin-right: 20px;
-  }
-  
-  .loading {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
+  display: flex;
+  padding: 20px;
+}
+
+.movieInfo {
+  display: flex;
+}
+
+.moviePoster img {
+  width: 185px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.movieDetails h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.tabs {
+  display: flex;
+  margin-top: 20px;
+}
+
+.tab {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #000;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.tabContent {
+  width: 100%;
+}
+
+.overviewContent {
+  display: flex;
+  align-items: flex-start;
+}
+
+.overviewContent img {
+  width: 185px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 20px;
+}

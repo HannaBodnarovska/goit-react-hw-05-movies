@@ -8,24 +8,24 @@ function Reviews({ movieId }) {
 
   useEffect(() => {
     const API_KEY = '18ff5e266d356991087394c727a30345';
-    axios.get(`/movies/get-movie-reviews/${movieId}?api_key=${API_KEY}`)
+    axios.get(`https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${API_KEY}`)
       .then(response => {
         setReviews(response.data.results);
         setLoading(false);
       })
       .catch(error => {
-        console.error('Помилка отримання оглядів:', error);
+        console.error('Error fetching reviews:', error);
         setLoading(false);
       });
   }, [movieId]);
 
   if (loading) {
-    return <div className={styles.loading}>Завантаження оглядів...</div>;
+    return <div className={styles.loading}>Loading reviews...</div>;
   }
 
   return (
     <div className={styles.reviewsContainer}>
-      <h2>Огляди</h2>
+      <h2>Reviews</h2>
       {reviews.length > 0 ? (
         <ul>
           {reviews.map(review => (
@@ -36,7 +36,7 @@ function Reviews({ movieId }) {
           ))}
         </ul>
       ) : (
-        <p>Огляди відсутні.</p>
+        <p>No reviews available.</p>
       )}
     </div>
   );

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';  // Додайте імпорт Link
+import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 
 function Home() {
   const [trendingMovies, setTrendingMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     const API_KEY = '18ff5e266d356991087394c727a30345';
@@ -13,21 +14,22 @@ function Home() {
         setTrendingMovies(response.data.results);
       })
       .catch(error => {
-        console.error('Помилка отримання даних:', error);
+        console.error('Error fetching data:', error);
       });
   }, []);
 
   return (
     <div className={styles.homeContainer}>
-      <h1>Популярні фільми</h1>
+      <h1>Popular Movies</h1>
       <div className={styles.movieList}>
         {trendingMovies.map(movie => (
-          <Link to={`/movies/${movie.id}`} key={movie.id} className={styles.movieItem}>  {/* Додайте посилання на сторінку деталей */}
-            <img
-              src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
-              alt={movie.title}
-              className={styles.moviePoster}
-            />
+          <Link
+            to={`/movies/${movie.id}`}
+            key={movie.id}
+            className={`${styles.movieItem} ${selectedMovie === movie.id ? styles.active : ''}`}
+            onMouseEnter={() => setSelectedMovie(movie.id)}
+            onMouseLeave={() => setSelectedMovie(null)}
+          >
             <h2>{movie.title}</h2>
           </Link>
         ))}

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect, useState, Suspense } from 'react';
 import axios from 'axios';
+import { Link, useParams } from 'react-router-dom'; 
 import styles from './MovieDetails.module.css';
-import Cast from '../Cast/Cast';
-import Reviews from '../Reviews/Reviews';
+
+const Cast = React.lazy(() => import('../Cast/Cast'));
+const Reviews = React.lazy(() => import('../Reviews/Reviews'));
 
 function MovieDetails() {
   const { movieId } = useParams();
@@ -20,7 +21,7 @@ function MovieDetails() {
         setLoading(false);
       })
       .catch((error) => {
-        console.error('Помилка отримання даних про фільм:', error);
+        console.error('Error fetching movie details:', error);
         setLoading(false);
       });
   }, [movieId]);
@@ -64,16 +65,14 @@ function MovieDetails() {
           </div>
           <div className={styles.tabContent}>
             {activeTab === 'cast' && (
-              <>
-                <h2>Cast</h2>
+              <Suspense fallback={<div>Loading...</div>}>
                 <Cast movieId={movieId} />
-              </>
+              </Suspense>
             )}
             {activeTab === 'reviews' && (
-              <>
-                <h2>Reviews</h2>
+              <Suspense fallback={<div>Loading...</div>}>
                 <Reviews movieId={movieId} />
-              </>
+              </Suspense>
             )}
           </div>
         </div>

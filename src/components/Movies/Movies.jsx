@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import styles from './Movies.module.css';
 
 function Movies() {
@@ -36,9 +37,9 @@ function Movies() {
       <button onClick={handleSearch}>Search</button>
       <div className={styles.searchResults}>
         {searchResults.map((movie) => (
-          <div key={movie.id} className={styles.movieItem}>
+          <Link to={`/movies/${movie.id}`} key={movie.id} className={styles.movieItem}>
             <h2>{movie.title}</h2>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
@@ -46,3 +47,4 @@ function Movies() {
 }
 
 export default Movies;
+

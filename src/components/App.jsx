@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
 import Home from './Home/Home';
-import Movies from './Movies/Movies';
-import MovieDetails from './MovieDetails/MovieDetails';
 import styles from './App.module.css';
+
+const Movies = React.lazy(() => import('./Movies/Movies'));
+const MovieDetails = React.lazy(() => import('./MovieDetails/MovieDetails'));
+
 
 function App() {
   return (
@@ -21,8 +23,8 @@ function App() {
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/movies/:movieId/*" element={<MovieDetails />} />
+          <Route path="/movies" element={<Suspense fallback={<div>Loading...</div>}><Movies /></Suspense>} />
+          <Route path="/movies/:movieId/*" element={<Suspense fallback={<div>Loading...</div>}><MovieDetails /></Suspense>} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>

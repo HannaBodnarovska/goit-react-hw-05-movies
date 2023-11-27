@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as BrowserRouter, Route, Routes, Link, Navigate } from 'react-router-dom'; 
 import Home from './Home/Home';
 import styles from './App.module.css';
 
@@ -9,7 +9,7 @@ const MovieDetails = React.lazy(() => import('./MovieDetails/MovieDetails'));
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter basename="/goit-react-hw-05-movies"> 
       <div className={styles.appContainer}>
         <nav className={styles.navbar}>
           <ul className={styles.navbarList}>
@@ -28,8 +28,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
-
 export default App;

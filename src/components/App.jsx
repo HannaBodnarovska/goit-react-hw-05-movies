@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter as BrowserRouter, Route, Routes, Link, Navigate } from 'react-router-dom'; 
+import { BrowserRouter, Route, Routes, Link, Navigate } from 'react-router-dom';
 import Home from './Home/Home';
 import styles from './App.module.css';
 
